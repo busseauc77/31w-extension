@@ -30,12 +30,7 @@ function genere_html(){
             .'<button class="carrousel--fermer">X</button>'
             .'<figure class="carrousel__figure"></figure>'
 
-            .'<form class="carrousel__form">
-                <button type="radio"></button>
-                <button type="radio"></button>
-                <button type="radio"></button>
-                <button type="radio"></button>
-            </form>'
+            .'<form class="carrousel__form"></form>'
         .'</section> <!-- fin class="carrousel" -->';
         
         return $contenu;
