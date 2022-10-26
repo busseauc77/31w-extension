@@ -20,13 +20,24 @@ function genere_html(){
     /////////////////////////////////////// HTML
     // Le conteneur d'une boîte
     $contenu = 
-    "<div class='boite'>"
-    . "<code>Auteur: " . get_the_author() . "</code>"
-    . "<date>Date de publication: " . get_the_date() . "</date>"
-    . "<h5>Adresse URL" . get_the_guid() . "</h5>"
-    . "<h6>Catégorie: " . get_the_category() . "</h6>"
-    . '</div> <!-- fin class="boite" -->';
-    
-    return $contenu;
+        "<section class='carrousel'>"
+            // . "<code>Auteur: " . get_the_author() . "</code>"
+            // . "<date>Date de publication: " . get_the_date() . "</date>"
+            // . "<h5>Adresse URL" . get_the_guid() . "</h5>"
+            // . "<h6>Catégorie: " . get_the_category() . "</h6>"
+
+            // --fermer parce que ACTION __figure parce que élément se trouve dans carrousel
+            .'<button class="carrousel--fermer">X</button>'
+            .'<figure class="carrousel__figure"></figure>'
+
+            .'<form class="carrousel__form">
+                <button type="radio"></button>
+                <button type="radio"></button>
+                <button type="radio"></button>
+                <button type="radio"></button>
+            </form>'
+        .'</section> <!-- fin class="carrousel" -->';
+        
+        return $contenu;
    }
    add_shortcode('cb_carrousel', 'genere_html');
