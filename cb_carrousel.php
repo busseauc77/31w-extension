@@ -16,7 +16,34 @@ Author URI: https://github.com/busseauc77
 Version: 1.0.0
 */
 
-function genere_html(){
+// filemtime() // retourne en milliseconde le temps de la dernière sauvegarde
+// plugin_dir_path() // retourne le chemin du répertoire du plugin
+// __FILE__ // le fichier en train de s'exécuter
+// wp_enqueue_style() // Intègre le link:css dans la page
+// wp_enqueue_script() // intègre le script dans la page
+// wp_enqueue_scripts // le hook
+
+function cb_enqueue(){
+
+    $version_css = filemtime(plugin_dir_path(__FILE__)."style.css");
+    $version_js = filemtime(plugin_dir_path(__FILE__)."js/carrousel.js");
+
+    wp_enqueue_style("cb_carrousel_css",
+                    plugin_dir_url(__FILE__)."style.css",
+                    array(),
+                    $version_css,
+                    false);
+
+    wp_enqueue_scripts("cb_carrousel_js",
+                    plugin_dir_url(__FILE__)."js/carrousel.js",
+                    array(),
+                    $version_js,
+                    true);
+}
+add_action("wp_enqueue_scripts", "cb_enqueue");
+
+
+function boite_carrousel(){
     /////////////////////////////////////// HTML
     // Le conteneur d'une boîte
     $contenu = 
@@ -35,4 +62,6 @@ function genere_html(){
         
         return $contenu;
    }
-   add_shortcode('cb_carrousel', 'genere_html');
+   add_shortcode('cb_carrousel', 'boite_carrousel');
+
+   
