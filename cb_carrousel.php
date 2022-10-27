@@ -52,7 +52,7 @@ function boite_carrousel(){
         <div class='carrousel'>"
 
             // --fermer parce que ACTION __figure parce que élément se trouve dans carrousel
-            .'<button class="carrousel--fermer">X</button>'
+            .'<button class="carrousel__x">X</button>'
             .'<figure class="carrousel__figure"></figure>'
             .'<form class="carrousel__form"></form>'
         .'</div> <!-- fin class="carrousel" -->';
