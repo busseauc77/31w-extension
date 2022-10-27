@@ -25,40 +25,37 @@ Version: 1.0.0
 
 function cb_enqueue(){
 
-    $version_css = filemtime(plugin_dir_path(__FILE__)."style.css");
-    $version_js = filemtime(plugin_dir_path(__FILE__)."js/carrousel.js");
+    $version_css = filemtime(plugin_dir_path(__file__). "style.css");
+    $version_js = filemtime(plugin_dir_path(__file__). "js/carrousel.js");
+    /* var_dump(__FILE__); die(); */
+    wp_enqueue_style("cb_carrousel",plugin_dir_url( __FILE__)  . "style.css",
+    array(),
+    $version_css,
+    false);
 
-    wp_enqueue_style("cb_carrousel_css",
-                    plugin_dir_url(__FILE__)."style.css",
-                    array(),
-                    $version_css,
-                    false);
+wp_enqueue_script("cb_carrousel", plugin_dir_url( __FILE__) . "js/carrousel.js",
+                array(),
+                $version_js,
+                true);
+    
+};
 
-    wp_enqueue_scripts("cb_carrousel_js",
-                    plugin_dir_url(__FILE__)."js/carrousel.js",
-                    array(),
-                    $version_js,
-                    true);
-}
-add_action("wp_enqueue_scripts", "cb_enqueue");
+add_action("wp_enqueue_scripts","cb_enqueue");
 
 
 function boite_carrousel(){
     /////////////////////////////////////// HTML
     // Le conteneur d'une boîte
     $contenu = 
-        "<section class='carrousel'>"
-            // . "<code>Auteur: " . get_the_author() . "</code>"
-            // . "<date>Date de publication: " . get_the_date() . "</date>"
-            // . "<h5>Adresse URL" . get_the_guid() . "</h5>"
-            // . "<h6>Catégorie: " . get_the_category() . "</h6>"
+        "
+        <button class='bouton'>Ouvrir le carrousel</button>
+        <div class='carrousel'>"
 
             // --fermer parce que ACTION __figure parce que élément se trouve dans carrousel
             .'<button class="carrousel--fermer">X</button>'
             .'<figure class="carrousel__figure"></figure>'
-
             .'<form class="carrousel__form"></form>'
-        .'</section> <!-- fin class="carrousel" -->';
+        .'</div> <!-- fin class="carrousel" -->';
         
         return $contenu;
    }
