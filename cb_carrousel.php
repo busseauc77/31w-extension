@@ -43,7 +43,7 @@ wp_enqueue_script("cb_carrousel", plugin_dir_url( __FILE__) . "js/carrousel.js",
 add_action("wp_enqueue_scripts","cb_enqueue");
 
 
-function boite_carrousel(){
+function cb_boite_carrousel(){
     /////////////////////////////////////// HTML
     // Le conteneur d'une boîte
     $contenu = 
@@ -59,6 +59,6 @@ function boite_carrousel(){
         
         return $contenu;
    }
-   add_shortcode('cb_carrousel', 'boite_carrousel');
+   add_shortcode('cb_carrousel', 'cb_boite_carrousel');
 
    
