@@ -1,17 +1,51 @@
-.carrousel{
+.carrousel {
+    /* display: hidden/absolute, pas animables VS prop position */
     position: absolute;
     left: 25vw;
     top: 25vh;
     width: 50vw;
     height: 50vh;
-    // transform+opacity sont animables VS display: none
     transform: scale(0);
     opacity: 0;
-    transition: transform .5s, opacity .5s;
+    transition: transform 0.5s, opacity 0.5s;
     background-color: pink;
-}
-
-.carrousel--ouvrir {
+    z-index: 2;
+  }
+  
+  .carrousel--ouvrir {
     transform: scale(1);
     opacity: 1;
-}
+  }
+  
+  .carrousel__figure {
+    position: absolute;
+    top:0;
+    left: 0;
+  }
+  
+  .carrousel__figure__img{
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opactity .5s;
+  }
+  
+  .carrousel__form{
+    
+  }
+  
+  .carrousel__form__rad{
+    z-index: 2;
+  }
+
+  .carrousel__x{
+    position: absolute;
+    right :0;
+    top:0;
+    width: 2rem;
+    height:2rem;
+    z-index: 2;
+  }   
