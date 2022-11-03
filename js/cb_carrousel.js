@@ -1,5 +1,4 @@
 (function(){
-    // console.log('carrousel');
     let elGalerie = document.querySelector(".galerie");
     let elGalerieImgs = document.querySelectorAll(".galerie img")
 
@@ -10,26 +9,27 @@
     let elCarrousel__figure = document.querySelector(".carrousel__figure");
     let elCarrousel__form = document.querySelector(".carrousel__form");
     let index = 0;
-    let dernierIndex = elGalerieImgs.length;
+    let dernierIndex = -1;
     
     elBtn.addEventListener('mousedown', function(){
-        // console.log("evenement");
 
         elCarrousel.classList.add("carrousel--ouvrir");
         for (const elImg of elGalerieImgs){
             ajout_img_dans_carrousel(elImg);
-            console.log(index);
-            ajout_radio_dans_carrousel(index);
-            // index++;
-
+            ajout_radio_dans_carrousel();
+            elImg.addEventListener('mousedown', ()=>{
+                remiseAZeroCarrousel();
+            })
         }    
     })
 
-    function ajout_img_dans_carrousel(elImg){
-        let elCarrouselImg = (document.createElement('img'));
-        elCarrouselImg.setAttribute('src', elImg.src);
-        elCarrouselImg.classList.add('carrousel__figure__img');
-        elCarrousel__figure.appendChild(elCarrouselImg);
+    function remiseAZeroCarrousel(){
+        if (dernierIndex != -1){
+            elCarrousel__figure.children[dernierIndex].classList.remove('carrousel__figure__img--activer')  
+        }
+        console.log(this.dataset.index)
+        elCarrousel__figure.children[this.dataset.index].classList.add('carrousel__figure__img--activer')
+        dernierIndex = this.dataset.index
     }
 
     function ajout_radio_dans_carrousel(){
@@ -38,15 +38,22 @@
         elCarrousel__Form__Radio.classList.add('carrousel__form__rad');
         elCarrousel__Form__Radio.setAttribute('name', 'carrousel__form__rad');
         elCarrousel__Form__Radio.dataset.index = index;
-        elCarrousel__form.appendChild(elCarrousel__Form__Radio);
         index++;
+        elCarrousel__form.appendChild(elCarrousel__Form__Radio);
 
 
         elCarrousel__Form__Radio.addEventListener("mousedown", ()=>{
-            console.log(elCarrousel__Form__Radio.dataset.index)
-            elCarrousel__figure.children[this.dataset.index].classList.add();
+            remiseAZeroCarrousel();
         })
 
+    }
+    
+    function ajout_img_dans_carrousel(elImg){
+        elImg.dataset.index = index;
+        let elCarrouselImg = document.createElement('img');
+        elCarrouselImg.setAttribute('src', elImg.src);
+        elCarrouselImg.classList.add('carrousel__figure__img');
+        elCarrousel__figure.appendChild(elCarrouselImg);
     }
 
     elCarrousel__x.addEventListener('mousedown', function(){
