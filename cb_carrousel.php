@@ -47,8 +47,7 @@ function cb_boite_carrousel(){
     /////////////////////////////////////// HTML
     // Le conteneur d'une boîte
     $contenu = 
-        "<button class='bouton'>Ouvrir le carrousel</button>
-        <div class='carrousel'>"
+        "<div class='carrousel'>"
             // --fermer parce que ACTION __figure parce que élément se trouve dans carrousel
             .'<button class="carrousel__x">X</button>'
             .'<figure class="carrousel__figure"></figure>'
