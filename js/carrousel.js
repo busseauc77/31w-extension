@@ -1,82 +1,79 @@
 (function(){
     console.log("carrousel")
-    let elGalerie = document.querySelector(".galerie")
-    let elGalerieImg = document.querySelectorAll(".galerie img")
-    let elBouton = document.querySelector('.bouton')
-    let elCarrousel = document.querySelector('.carrousel')
-    let elCarrousel__x = document.querySelector('.carrousel__x')
-    let elCarrousel__figure = document.querySelector('.carrousel__figure')
-    let elCarrousel__form = document.querySelector('.carrousel__form')
-
-    // on initialise l'index à zéro, celui qui sera assignée à la première image de la galerie et qu'on implémentera
+    let elmGalerie = document.querySelector(".galerie")
+    let elmGalerieImg = document.querySelectorAll(".galerie img")
+    let elmBouton = document.querySelector('.bouton')
+    let elmCarrousel = document.querySelector('.carrousel')
+    let elmCarrousel__x = document.querySelector('.carrousel__x')
+    let elmCarrousel__figure = document.querySelector('.carrousel__figure')
+    let elmCarrousel__form = document.querySelector('.carrousel__form')
     let index = 0
-    // on initialise une valeur qui nous aidera à remplacer l'image pour une autre seulement s'il y'en a une
     let dernierIndex = -1
 
-    // écouteur d'évènement sur le bouton "ouvrir le carrousel"
-    // idéalement, on écoute plutôt la galerie et ou se débarasse du bouton
-    elGalerie.addEventListener('mousedown', function(e){
-        // on ajoute au carrousel la classe la faisant apparaître sur la page
-        elCarrousel.classList.add('carrousel--ouvrir');
+    elmBouton.addEventListener('mousedown', function(){
+        console.log("ouverture du carrousel")
+        elmCarrousel.classList.add('carrousel--ouvrir')
+        for (const elmImg of elmGalerieImg){
+            ajout_img_dans_carrousel(elmImg)
+            ajout_radio_dans_carrousel()
+            elmImg.addEventListener('mousedown', function(){
+                console.log(this.dataset.index)
+/* Créer un fonction avec ce code */
+if (dernierIndex != -1)
+        {
+            elmCarrousel__figure.children[dernierIndex].classList.remove('carrousel__figure__img--activer')  
+        }
+        console.log(this.dataset.index)
+        elmCarrousel__figure.children[this.dataset.index].classList.add('carrousel__figure__img--activer')
+        dernierIndex = this.dataset.index
 
-        // si on a pas encore assigné des index aux images et boutons (à faire qu'une fois)
-        if (index < 2){
-         
-            for (const elImg of elGalerieImg){
-                // pour chaque image de la galerie, insère la dans le carrousel
-                ajout_img_dans_carrousel(elImg);
-                // on ajoute les boutons radios correspondants (même index)
-                ajout_radio_dans_carrousel();
-                // puis on change l'index avant de passer à la prochaine image de la galerie
-                index++;
-            };
-        };
+/* --------- */
 
-        for (const enfant of elCarrousel__figure.children){
-            if (e.target.src == enfant.src){
-                enfant.classList.add('carrousel__figure__img--activer');
-            }
-            else {
-                enfant.classList.remove('carrousel__figure__img--activer');
-            };
-        };
+            })
+        }
+    })
 
-        for (const boutonSelect of elCarrousel__form){
-            if (e.target.dataset.index === boutonSelect.dataset.index){
-                boutonSelect.setAttribute('checked', '');
-            }
+function ajout_radio_dans_carrousel(){
+    let elmCarrousel__form__radio = document.createElement('input')
+    elmCarrousel__form__radio.setAttribute('type','radio')
+    elmCarrousel__form__radio.classList.add('carrousel__form__rad')
+    elmCarrousel__form__radio.setAttribute('name','carrousel__form__rad')
+    elmCarrousel__form__radio.dataset.index = index
+    index++
+    elmCarrousel__form.appendChild(elmCarrousel__form__radio)
 
-            else {
-                boutonSelect.removeAttribute('checked');
-            }
-        };
-    });
+    elmCarrousel__form__radio.addEventListener('mousedown', function(){
 
-    function ajout_radio_dans_carrousel(){
-        let elCarrousel__form__radio = document.createElement('input')
-        elCarrousel__form__radio.setAttribute('type','radio')
-        elCarrousel__form__radio.classList.add('carrousel__form__rad')
-        elCarrousel__form__radio.setAttribute('name','carrousel__form__rad')
-        elCarrousel__form__radio.dataset.index = index
-        console.log(index)
-        elCarrousel__form.appendChild(elCarrousel__form__radio)
-    }
+        if (dernierIndex != -1)
+        {
+            elmCarrousel__figure.children[dernierIndex].classList.remove('carrousel__figure__img--activer')  
+        }
+        console.log(this.dataset.index)
+        elmCarrousel__figure.children[this.dataset.index].classList.add('carrousel__figure__img--activer')
+        dernierIndex = this.dataset.index
+    })
+}
 /**
  * Ajout d'une img dans le carrousel
- * @param {object dom} elImg 
+ * @param {object dom} elmImg 
  */
-    function ajout_img_dans_carrousel(elImg){
-        elImg.dataset.index = index
-        console.log(index)
 
-        console.log(elImg.getAttribute('src'))
-        let elCarrouselImg = document.createElement('img')
-        elCarrouselImg.setAttribute('src', elImg.getAttribute('src'))
-        elCarrouselImg.classList.add('carrousel__figure__img') 
-        elCarrousel__figure.appendChild(elCarrouselImg)
+    function ajout_img_dans_carrousel(elmImg)
+    {
+        elmImg.dataset.index = index
+        console.log(elmImg.getAttribute('src'))
+        let elmCarrouselImg = document.createElement('img')
+        //console.log(elmImg.getAttribute('src'))
+        elmCarrouselImg.setAttribute('src', elmImg.getAttribute('src'))
+        elmCarrouselImg.classList.add('carrousel__figure__img') 
+        elmCarrousel__figure.appendChild(elmCarrouselImg)
+        
+        
     }
 
-    elCarrousel__x.addEventListener('mousedown', function(){
-        elCarrousel.classList.remove('carrousel--ouvrir')
+
+
+    elmCarrousel__x.addEventListener('mousedown', function(){
+        elmCarrousel.classList.remove('carrousel--ouvrir')
     })
 })()
