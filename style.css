@@ -1,5 +1,4 @@
 .carrousel {
-  /* display: hidden/absolute, pas animables VS prop position */
   position: absolute;
   left: 25vw;
   top: 25vh;
@@ -8,13 +7,22 @@
   transform: scale(0);
   opacity: 0;
   transition: transform 0.5s, opacity 0.5s;
-  background-color: white;
+  background-color: beige;
   z-index: 1;
 }
 
 .carrousel--ouvrir {
   transform: scale(1);
   opacity: 1;
+}
+
+.carrousel__x {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
+  z-index: 2;
 }
 
 .carrousel__figure {
@@ -29,7 +37,7 @@
 .carrousel__figure__img {
   display: block;
   position: absolute;
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -48,15 +56,5 @@
 }
 
 .carrousel__form__rad {
-  z-index: 2;
-}
-
-.carrousel__x {
-  position: absolute;
-  right: 0;
-  height: 47px;
-  border-radius: 7px;
-  background: black;
-  color: white;
   z-index: 2;
 }/*# sourceMappingURL=style.css.map */
