@@ -1,21 +1,19 @@
 .carrousel {
   position: absolute;
-  /* left: 25vw;
-  top: 25vh; */
-  width: 30vw;
-  height: 73vh;
-  /* transform: scale(0); */
+  left: 40%;
+  top: 44%;
+  width: 30%;
+  height: 71vh;
+  transform: scale(0);
   opacity: 0;
-  transition: transform 0.5s, opacity 0.5s;
-  background-color: beige;
+  /* transition: transform 0.5s, opacity 0.5s; */
+  /* background-color: beige; */
   z-index: 1;
 }
 
 .carrousel--ouvrir {
   transform: scale(1);
   opacity: 1;
-  top: 56%;
-  left: 43%;
 }
 
 .carrousel__x {
